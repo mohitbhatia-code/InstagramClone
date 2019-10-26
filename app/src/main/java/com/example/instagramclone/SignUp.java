@@ -23,7 +23,7 @@ import java.util.List;
 
 public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
-    private Button msaveBtn,mGetAllUsers;
+    private Button msaveBtn,mGetAllUsers,mSwitchingBtn;
     private EditText edtName,edtPSpeed,edtPPower,edtKSpeed,edtKPower;
     private TextView mTvGetData;
     private String kickBoxersName;
@@ -42,6 +42,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         edtKPower=findViewById(R.id.edtKickPower);
         mTvGetData=findViewById(R.id.txtGetData);
         mGetAllUsers=findViewById(R.id.btnGetAllUsers);
+        mSwitchingBtn=findViewById(R.id.btnSwitching);
 
         msaveBtn.setOnClickListener(this);
         mTvGetData.setOnClickListener(new View.OnClickListener() {
@@ -65,12 +66,13 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             public void onClick(View v) {
                 kickBoxersName="";
                 ParseQuery<ParseObject> allKickBoxers = ParseQuery.getQuery("KickBoxer");
+                allKickBoxers.whereGreaterThanOrEqualTo("kickSpeed",300);
+                allKickBoxers.setLimit(1);
                 allKickBoxers.findInBackground(new FindCallback<ParseObject>() {
                     @Override
 
                     public void done(List<ParseObject> objects, ParseException e) {
                         if (e==null){
-
                             for(ParseObject kickBoxer:objects) {
                                 kickBoxersName = kickBoxersName+kickBoxer.get("name")+"\n";
                             }
@@ -81,6 +83,8 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                 Log.i("MESSAGE",kickBoxersName+"ABC");
             }
         });
+
+
     }
 
 
