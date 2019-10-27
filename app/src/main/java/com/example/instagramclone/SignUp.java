@@ -1,5 +1,6 @@
 package com.example.instagramclone;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -84,7 +85,13 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             }
         });
 
-
+        mSwitchingBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SignUp.this,SignUpLoginActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
