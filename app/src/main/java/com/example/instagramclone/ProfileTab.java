@@ -73,7 +73,7 @@ public class ProfileTab extends Fragment implements View.OnClickListener{
 
             }
         }
-//
+
         view.setFocusableInTouchMode(true);
         view.requestFocus();
         view.setOnKeyListener(new View.OnKeyListener() {
@@ -98,6 +98,7 @@ public class ProfileTab extends Fragment implements View.OnClickListener{
                         }
                     });
                     logoutAlert.show();
+                    return true;
                 }
                 return false;
             }
